@@ -25,12 +25,16 @@ class ExpenseVC: UIViewController {
         )
     }
     
-//    This method is called after the view controller lays out its subviews, so:
     override func viewDidLayoutSubviews() {
           super.viewDidLayoutSubviews()
           applyGradient()
       }
 
+    
+    
+    @IBAction func handleBackBtn(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
       private func applyGradient() {
           let gradientLayer = CAGradientLayer()

@@ -3,6 +3,7 @@
     <device id="retina6_3" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -235,9 +236,31 @@
                                         </subviews>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Mz-gb-cLQ">
+                                        <rect key="frame" x="294.66666666666669" y="706" width="85.333333333333314" height="50"/>
+                                        <color key="backgroundColor" red="0.54901960780000003" green="0.039215686270000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="6HJ-U6-HcV"/>
+                                        </constraints>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Add" imagePadding="5">
+                                            <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="large"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="EfR-pA-ftE" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="4EN-oC-hp7"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="9ky-p1-qgs" secondAttribute="trailing" id="LlM-Eg-cgf"/>
+                                    <constraint firstItem="pMY-JA-QAd" firstAttribute="trailing" secondItem="6Mz-gb-cLQ" secondAttribute="trailing" constant="22" id="NzB-de-HDh"/>
+                                    <constraint firstItem="pMY-JA-QAd" firstAttribute="bottom" secondItem="6Mz-gb-cLQ" secondAttribute="bottom" constant="22" id="OBr-LF-5VC"/>
                                     <constraint firstAttribute="bottom" secondItem="9ky-p1-qgs" secondAttribute="bottom" id="bA6-SX-Pzx"/>
                                     <constraint firstItem="9ky-p1-qgs" firstAttribute="width" secondItem="MIl-H7-J0I" secondAttribute="width" id="iZN-Nj-oMO"/>
                                     <constraint firstItem="9ky-p1-qgs" firstAttribute="leading" secondItem="MIl-H7-J0I" secondAttribute="leading" id="tYS-8H-dap"/>
@@ -414,7 +437,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5nr-lZ-zLY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1890" y="-15"/>
+            <point key="canvasLocation" x="1509" y="-15"/>
         </scene>
         <!--ExpenseVC-->
         <scene sceneID="zRh-OI-NrV">
@@ -425,30 +448,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="omz-im-15b">
-                                <rect key="frame" x="0.0" y="62" width="402" height="778"/>
+                                <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MbN-c3-c5t">
                                         <rect key="frame" x="0.0" y="0.0" width="402" height="503.66666666666669"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTk-K9-1dL">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="iSS-V9-BYq">
                                                 <rect key="frame" x="16" y="8" width="370" height="34.333333333333336"/>
-                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="chevron.down.2" catalog="system" imagePlacement="trailing" title="Add Expense" imagePadding="10">
-                                                    <attributedString key="attributedSubtitle"/>
-                                                </buttonConfiguration>
-                                            </button>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AdN-4T-c5Q">
+                                                        <rect key="frame" x="0.0" y="0.0" width="39.666666666666664" height="34.333333333333336"/>
+                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="handleBackBtn:" destination="EfR-pA-ftE" eventType="touchUpInside" id="VYw-49-Fbp"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTk-K9-1dL">
+                                                        <rect key="frame" x="212.66666666666663" y="0.0" width="157.33333333333337" height="34.333333333333336"/>
+                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="chevron.down.2" catalog="system" imagePlacement="trailing" title="Add Expense" imagePadding="10">
+                                                            <attributedString key="attributedSubtitle"/>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fMd-gl-que">
                                                 <rect key="frame" x="16" y="62.333333333333336" width="370" height="108.33333333333331"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How much?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ded-x9-m9J">
-                                                        <rect key="frame" x="0.0" y="30.000000000000014" width="370" height="20.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="29.999999999999993" width="370" height="20.333333333333336"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="33x-Wb-pn2">
-                                                        <rect key="frame" x="0.0" y="60.333333333333329" width="370" height="48"/>
+                                                        <rect key="frame" x="0.0" y="60.333333333333343" width="370" height="48"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -460,7 +497,7 @@
                                                 <rect key="frame" x="16" y="190.66666666666663" width="370" height="240"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S6A-YN-c2N">
-                                                        <rect key="frame" x="16" y="30.000000000000028" width="338" height="40"/>
+                                                        <rect key="frame" x="16" y="30" width="338" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="DH6-ge-XIM"/>
                                                         </constraints>
@@ -520,7 +557,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </stackView>
                                             <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Nb-xZ-wpH">
-                                                <rect key="frame" x="16" y="450.66666666666663" width="370" height="45"/>
+                                                <rect key="frame" x="16" y="450.66666666666669" width="370" height="45"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="h55-1k-etx"/>
@@ -678,11 +715,13 @@
         <image name="AppIcon" width="20" height="20"/>
         <image name="arrow.up.left.and.arrow.down.right" catalog="system" width="128" height="115"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
+        <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="chevron.down.2" catalog="system" width="128" height="121"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="chevron.up.2" catalog="system" width="128" height="121"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="images" width="526" height="526"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
