@@ -10,9 +10,19 @@ import UIKit
 class ExpenseVC: UIViewController {
 
     @IBOutlet var mainStack: UIView!
+    
+    @IBOutlet weak var amount: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        amount.backgroundColor = .clear
+        amount.borderStyle = .none
+        amount.attributedPlaceholder = NSAttributedString(
+            string: "0",
+            attributes: [
+                .foregroundColor: UIColor.white,
+                .font: UIFont.systemFont(ofSize: 32)
+            ]
+        )
     }
     
 //    This method is called after the view controller lays out its subviews, so:
