@@ -19,6 +19,7 @@ struct SignInVM {
     
     func saveToCoreData() {
         do{
+            print("Saved!!!!")
             try AppManager.shared.context.save()
         }catch{
             fatalError("Facing issue in save context!")
