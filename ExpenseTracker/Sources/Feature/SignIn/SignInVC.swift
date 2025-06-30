@@ -78,7 +78,6 @@ class SignInVC: UIViewController {
             window.makeKeyAndVisible()
         }
 
-
         
 //        let itemData: [User] = SignInVM.shared.fetch(User.self)
 //        UserDefaults.standard.set(userName.text, forKey: "userName")

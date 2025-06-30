@@ -253,7 +253,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="EfR-pA-ftE" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="4EN-oC-hp7"/>
+                                            <segue destination="EfR-pA-ftE" kind="presentation" identifier="navigateToAddExpense" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="4EN-oC-hp7"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -280,6 +280,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ljo-3L-kj2"/>
+                    <connections>
+                        <outlet property="addBtn" destination="6Mz-gb-cLQ" id="jQJ-sl-OO8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -451,7 +454,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MbN-c3-c5t">
-                                        <rect key="frame" x="0.0" y="0.0" width="402" height="503.66666666666669"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="402" height="498"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="iSS-V9-BYq">
                                                 <rect key="frame" x="16" y="8" width="370" height="34.333333333333336"/>
@@ -494,7 +497,7 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="30" leading="0.0" bottom="0.0" trailing="0.0"/>
                                             </stackView>
                                             <stackView opaque="NO" alpha="0.85000002384185791" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kju-K3-cOT">
-                                                <rect key="frame" x="16" y="190.66666666666663" width="370" height="240"/>
+                                                <rect key="frame" x="16" y="190.66666666666663" width="370" height="234.33333333333337"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S6A-YN-c2N">
                                                         <rect key="frame" x="16" y="30" width="338" height="40"/>
@@ -515,21 +518,8 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wzr-7c-UT0">
-                                                        <rect key="frame" x="16" y="100.00000000000003" width="338" height="40"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="VYK-uX-gmJ"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="12"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Transaction Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bDq-zn-LZj">
-                                                        <rect key="frame" x="16" y="170.00000000000003" width="338" height="40"/>
+                                                        <rect key="frame" x="16" y="100.00000000000003" width="338" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="l3R-Mb-zJU"/>
                                                         </constraints>
@@ -541,6 +531,13 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="75U-eq-FS9">
+                                                        <rect key="frame" x="16" y="170.00000000000003" width="338" height="34.333333333333343"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Select Category"/>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.68235294120000001" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="30" leading="16" bottom="30" trailing="16"/>
@@ -557,7 +554,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </stackView>
                                             <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Nb-xZ-wpH">
-                                                <rect key="frame" x="16" y="450.66666666666669" width="370" height="45"/>
+                                                <rect key="frame" x="16" y="445" width="370" height="45"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="h55-1k-etx"/>
@@ -570,6 +567,9 @@
                                                         <real key="value" value="12"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="handleSaveBtn:" destination="EfR-pA-ftE" eventType="touchUpInside" id="KWl-eB-bBD"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
@@ -597,7 +597,9 @@
                     </view>
                     <connections>
                         <outlet property="amount" destination="33x-Wb-pn2" id="xEw-lb-Qr2"/>
+                        <outlet property="desc" destination="S6A-YN-c2N" id="fAr-2S-00Y"/>
                         <outlet property="mainStack" destination="mtC-Wb-0bp" id="Nle-J4-Ty0"/>
+                        <outlet property="methodName" destination="GTk-K9-1dL" id="99h-MD-6o7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BJF-Pw-BFj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
