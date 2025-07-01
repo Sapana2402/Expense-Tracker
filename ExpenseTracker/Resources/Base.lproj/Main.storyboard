@@ -217,7 +217,7 @@
                                                                     <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                            <real key="value" value="12"/>
+                                                                            <real key="value" value="10"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </stackView>
@@ -232,7 +232,7 @@
                                                         <color key="backgroundColor" red="0.68235294120000001" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="30"/>
+                                                                <real key="value" value="12"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
@@ -246,6 +246,7 @@
                                                 <connections>
                                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="USq-o6-1Kp"/>
                                                     <outlet property="delegate" destination="BYZ-38-t0r" id="rea-08-KUR"/>
+                                                    <outlet property="prefetchDataSource" destination="BYZ-38-t0r" id="pBs-iQ-baZ"/>
                                                 </connections>
                                             </tableView>
                                         </subviews>
@@ -297,8 +298,11 @@
                     <navigationItem key="navigationItem" id="ljo-3L-kj2"/>
                     <connections>
                         <outlet property="addBtn" destination="6Mz-gb-cLQ" id="jQJ-sl-OO8"/>
+                        <outlet property="availableBalance" destination="UbT-rD-Hkh" id="E4A-8c-FWZ"/>
+                        <outlet property="earned" destination="y8w-yU-ieQ" id="TR6-Sa-8eT"/>
                         <outlet property="heightOfContent" destination="eBw-OP-7Ew" id="2Zr-Uf-m7A"/>
                         <outlet property="listTableView" destination="yNB-mz-xSU" id="7A1-tz-7WP"/>
+                        <outlet property="spent" destination="g78-Wb-vPm" id="U1a-Vr-4tQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -340,7 +344,7 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="a7T-p4-feI">
-                                        <rect key="frame" x="16" y="108" width="370" height="240"/>
+                                        <rect key="frame" x="16" y="108" width="370" height="170"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="NIck Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qrd-NW-5Me">
                                                 <rect key="frame" x="16" y="30" width="338" height="40"/>
@@ -361,21 +365,8 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Total Balance" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5uE-hF-7q2">
-                                                <rect key="frame" x="16" y="100" width="338" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="loa-2D-BYw"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="12"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Income per month" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FYC-fh-Rpb">
-                                                <rect key="frame" x="16" y="170" width="338" height="40"/>
+                                                <rect key="frame" x="16" y="100" width="338" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="PjW-mU-3g4"/>
                                                 </constraints>
@@ -403,7 +394,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oeQ-7T-jEj">
-                                        <rect key="frame" x="219" y="378" width="167" height="71"/>
+                                        <rect key="frame" x="219" y="308" width="167" height="71"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="167" id="D3d-0B-CVj"/>
@@ -451,7 +442,6 @@
                         <outlet property="incomePerMonth" destination="FYC-fh-Rpb" id="dXc-Q7-F4E"/>
                         <outlet property="seconImageView" destination="WKy-aa-8Cn" id="mD7-Vn-v1F"/>
                         <outlet property="thirdImageView" destination="P37-ZD-pyf" id="tu8-g7-lIk"/>
-                        <outlet property="totalBalance" destination="5uE-hF-7q2" id="Axw-8T-2YA"/>
                         <outlet property="userName" destination="qrd-NW-5Me" id="omg-Wm-IPY"/>
                     </connections>
                 </viewController>

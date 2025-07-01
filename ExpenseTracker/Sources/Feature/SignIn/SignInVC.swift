@@ -16,7 +16,6 @@ class SignInVC: UIViewController {
     @IBOutlet weak var thirdImageView: UIImageView!
     
     @IBOutlet weak var userName: UITextField!
-    @IBOutlet weak var totalBalance: UITextField!
     @IBOutlet weak var incomePerMonth: UITextField!
 //    var window: UIWindow?
     
@@ -49,7 +48,7 @@ class SignInVC: UIViewController {
     
     
     @IBAction func handleSaveData(_ sender: UIButton) {
-        if userName.text! != "", totalBalance.text! != "", incomePerMonth.text! != "" {
+        if userName.text! != "", incomePerMonth.text! != "" {
             addUserData()
         }else{
             let alert = UIAlertController(title: "", message: "All data required!", preferredStyle: .alert)
@@ -62,7 +61,6 @@ class SignInVC: UIViewController {
     func addUserData()  {
         let userDetails = User(context: AppManager.shared.context)
         userDetails.nickName = userName.text
-        userDetails.totalBalance = Double(totalBalance.text ?? "0") ?? 0.0
         userDetails.incomePerMonth = Double(incomePerMonth.text ?? "0") ?? 0.0
         
         SignInVM.shared.saveToCoreData()

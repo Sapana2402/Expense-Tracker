@@ -123,6 +123,12 @@ class ExpenseVC: UIViewController {
             transactionData.category = selectedCategory
             transactionData.type = selectedTitle
             transactionData.date = formatter.string(from: datePicker.date)
+            
+            let users = SignInVM.shared.fetch(User.self)
+            if let user = users.first {
+                transactionData.user = user
+            }
+            
             SignInVM.shared.saveToCoreData()
             self.dismiss(animated: true, completion: nil)
 

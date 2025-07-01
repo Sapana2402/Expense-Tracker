@@ -8,10 +8,10 @@
 import CoreData
 import UIKit
 
-struct SignInVM {
+class SignInVM {
     
     static let shared = SignInVM()
-
+    var currentUser: User?
     
     init() {
        

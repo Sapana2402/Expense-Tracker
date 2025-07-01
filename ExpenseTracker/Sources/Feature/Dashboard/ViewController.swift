@@ -15,10 +15,15 @@ class ViewController: UIViewController {
     let dataSource = ["Expense", "Income"]
     var selectedMenuTitle: String?
     var transactions: [Transaction] = []
-
+    
+    @IBOutlet weak var availableBalance: UILabel!
+    @IBOutlet weak var earned: UILabel!
+    @IBOutlet weak var spent: UILabel!
+    
     @IBOutlet weak var heightOfContent: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
+        listTableView.isScrollEnabled = false
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         handleMenu()
@@ -39,7 +44,38 @@ class ViewController: UIViewController {
         listTableView.reloadData()
         listTableView.layoutIfNeeded()
 
-        heightOfContent.constant = listTableView.contentSize.height
+        heightOfContent.constant = listTableView.contentSize.height + 10
+        let users = SignInVM.shared.fetch(User.self)
+             guard let user = users.first else {
+                 print("❌ No user found")
+                 return
+             }
+
+             // Get user's transactions (one-to-many relationship)
+             let userTransactions = user.transactions?.allObjects as? [Transaction] ?? []
+        print("userTransactions",userTransactions)
+             // Calculate totals
+             var totalIncome: Double = 0
+             var totalExpense: Double = 0
+
+             for transaction in userTransactions {
+                 if transaction.type == "Income" {
+                     totalIncome += transaction.amount
+                 } else if transaction.type == "Expense" {
+                     totalExpense += transaction.amount
+                 }
+             }
+
+             let totalBalance = user.totalBalance // Or: totalIncome - totalExpense
+
+             // Update UI
+             availableBalance.text = "$ \(String(format: "%.2f", totalBalance))"
+             earned.text = "$ \(String(format: "%.2f", totalIncome))"
+             spent.text = "$ \(String(format: "%.2f", totalExpense))"
+        let calculatedBalance = totalIncome - totalExpense
+
+        // Update UI
+        availableBalance.text = "$ \(String(format: "%.2f", calculatedBalance))"
 
     }
 
@@ -69,13 +105,21 @@ class ViewController: UIViewController {
 }
 
 extension ViewController : UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        transactions.count
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        transactions.count
+//    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return transactions.count
     }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = listTableView.dequeueReusableCell(withIdentifier: "ListTableViewCell") as! ListTableViewCell
-        let listData = transactions[indexPath.row]
+        let listData = transactions[indexPath.section]
         cell.amount.text = "\(listData.amount)"
         cell.category.text = listData.category
         cell.desc.text = listData.descriptions
@@ -89,6 +133,15 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0 // This is your margin (space) between cells
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let spacerView = UIView()
+        spacerView.backgroundColor = .clear // or match your background color
+        return spacerView
+    }
+
 }
 
