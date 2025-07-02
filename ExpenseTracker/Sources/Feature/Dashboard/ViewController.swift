@@ -143,5 +143,23 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         return spacerView
     }
 
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let transactionToDelete = transactions[indexPath.section]
+            AppManager.shared.context.delete(transactionToDelete)
+            SignInVM.shared.saveToCoreData()
+
+            transactions.remove(at: indexPath.section)
+
+            tableView.deleteSections([indexPath.section], with: .automatic)
+
+            tableView.layoutIfNeeded()
+            heightOfContent.constant = tableView.contentSize.height + 10
+            loadTransactions()
+        }
+    }
+
 }
 

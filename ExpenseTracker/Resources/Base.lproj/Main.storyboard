@@ -37,6 +37,9 @@
                                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="gearshape.fill" catalog="system"/>
+                                                        <connections>
+                                                            <segue destination="xLG-84-4Y6" kind="presentation" modalPresentationStyle="fullScreen" id="vry-be-oCK"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -447,7 +450,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5nr-lZ-zLY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1509" y="-15"/>
+            <point key="canvasLocation" x="1924" y="-15"/>
         </scene>
         <!--ExpenseVC-->
         <scene sceneID="zRh-OI-NrV">
@@ -615,7 +618,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BJF-Pw-BFj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3513.4328358208954" y="-15.102974828375284"/>
+            <point key="canvasLocation" x="3476" y="150"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="KGf-Gv-00T">
@@ -699,22 +702,39 @@
                                     <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="100" bottom="0.0" trailing="100"/>
                                 </variation>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OX3-eI-zgh">
-                                <rect key="frame" x="16" y="78" width="370" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="k0E-85-Q26">
+                                <rect key="frame" x="16" y="16" width="370" height="36"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bvi-Ox-liK">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="MA3-a4-MDN"/>
+                                        </constraints>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system"/>
+                                        <connections>
+                                            <action selector="handleBackBtn:" destination="xLG-84-4Y6" eventType="touchUpInside" id="856-ht-z84"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OX3-eI-zgh">
+                                        <rect key="frame" x="50" y="0.0" width="320" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kae-OL-BuH"/>
                         <color key="backgroundColor" red="0.1215686275" green="0.074509803920000006" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="k0E-85-Q26" firstAttribute="leading" secondItem="kae-OL-BuH" secondAttribute="leading" constant="16" id="Jqw-Bu-YYY"/>
+                            <constraint firstItem="k0E-85-Q26" firstAttribute="top" secondItem="kae-OL-BuH" secondAttribute="top" constant="16" id="Nld-OE-kwA"/>
+                            <constraint firstItem="kae-OL-BuH" firstAttribute="trailing" secondItem="k0E-85-Q26" secondAttribute="trailing" constant="16" id="NmA-3g-WsV"/>
                             <constraint firstItem="uk2-mi-fKs" firstAttribute="centerX" secondItem="vJj-wp-yeh" secondAttribute="centerX" id="d2G-cT-OKk"/>
                             <constraint firstItem="uk2-mi-fKs" firstAttribute="centerY" secondItem="vJj-wp-yeh" secondAttribute="centerY" id="dDe-ss-wRe"/>
                             <constraint firstItem="kae-OL-BuH" firstAttribute="trailing" secondItem="uk2-mi-fKs" secondAttribute="trailing" id="gAQ-s8-ale"/>
-                            <constraint firstItem="kae-OL-BuH" firstAttribute="trailing" secondItem="OX3-eI-zgh" secondAttribute="trailing" constant="16" id="i7i-Ig-eCO"/>
-                            <constraint firstItem="OX3-eI-zgh" firstAttribute="top" secondItem="kae-OL-BuH" secondAttribute="top" constant="16" id="ltS-WJ-FMW"/>
-                            <constraint firstItem="OX3-eI-zgh" firstAttribute="leading" secondItem="kae-OL-BuH" secondAttribute="leading" constant="16" id="sWu-FD-0qy"/>
                             <constraint firstItem="uk2-mi-fKs" firstAttribute="leading" secondItem="kae-OL-BuH" secondAttribute="leading" id="z11-Ls-1aG"/>
                         </constraints>
                     </view>
