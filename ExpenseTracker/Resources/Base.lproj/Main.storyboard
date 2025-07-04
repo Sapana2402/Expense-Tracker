@@ -308,6 +308,7 @@
                         <outlet property="earned" destination="y8w-yU-ieQ" id="TR6-Sa-8eT"/>
                         <outlet property="heightOfContent" destination="eBw-OP-7Ew" id="2Zr-Uf-m7A"/>
                         <outlet property="listTableView" destination="yNB-mz-xSU" id="7A1-tz-7WP"/>
+                        <outlet property="pieChartContainer" destination="G3X-Nq-IuB" id="Fll-7y-IF1"/>
                         <outlet property="spent" destination="g78-Wb-vPm" id="U1a-Vr-4tQ"/>
                     </connections>
                 </viewController>

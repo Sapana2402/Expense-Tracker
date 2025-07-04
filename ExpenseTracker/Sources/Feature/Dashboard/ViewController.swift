@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DGCharts
 
 class ViewController: UIViewController {
 
@@ -15,6 +16,7 @@ class ViewController: UIViewController {
     var selectedMenuTitle: String?
     var transactions: [Transaction] = []
 
+    @IBOutlet weak var pieChartContainer: UIStackView!
     @IBOutlet weak var availableBalance: UILabel!
     @IBOutlet weak var earned: UILabel!
     @IBOutlet weak var spent: UILabel!
@@ -26,11 +28,13 @@ class ViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         handleMenu()
         loadTransactions()
+        setupChart()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadTransactions()
+        setupChart()
     }
 
     func loadTransactions() {
@@ -56,13 +60,38 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+     func setupChart() {
+       let chartView = PieChartView(frame: pieChartContainer.bounds)
+        guard let (user, userTransactions) = getUserAndTransactions() else { return }
+        let (totalIncome, totalExpense, calculatedBalance) = calculateTotals(from: userTransactions)
+         
+       let entries = [
+          PieChartDataEntry(value: totalExpense, label: "Spent"),
+          PieChartDataEntry(value: totalIncome, label: "Earned")
+       ]
+    
+       let dataSet = PieChartDataSet(entries: entries, label: "")
+       dataSet.colors = [
+           UIColor(red: 1.0, green: 0.976, blue: 0.976, alpha: 1.0), // #FFF9F9
+           UIColor(red: 1.0, green: 0.694, blue: 0.694, alpha: 1.0)  // #FFB1B1
+       ]
+       dataSet.entryLabelColor = .white
+       dataSet.valueTextColor = .white
+         
+       let data = PieChartData(dataSet: dataSet)
+       chartView.data = data
+       chartView.centerText = "Summary"
+    
+       pieChartContainer.addSubview(chartView)
+    }
 
     func handleMenu() {
         let actionCloser = { (action: UIAction) in
             self.selectedMenuTitle = action.title
             self.performSegue(withIdentifier: "navigateToAddExpense", sender: self)
         }
-
+ 
         var menuChildren: [UIMenuElement] = []
         for list in dataSource {
             menuChildren.append(UIAction(title: list, handler: actionCloser))
@@ -221,6 +250,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.layoutIfNeeded()
             heightOfContent.constant = tableView.contentSize.height + 10
             loadTransactions()
+            setupChart()
         }
     }
 }
