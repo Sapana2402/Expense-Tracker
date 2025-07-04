@@ -139,10 +139,13 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ff-Xl-XN6">
-                                                        <rect key="frame" x="320.33333333333331" y="0.0" width="49.666666666666686" height="34.333333333333336"/>
+                                                        <rect key="frame" x="321.66666666666669" y="0.0" width="48.333333333333314" height="34.333333333333336"/>
                                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="arrow.up.left.and.arrow.down.right" catalog="system"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.down.fill" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="handlePdf:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gvB-SH-BtD"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -618,7 +621,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BJF-Pw-BFj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3476" y="150"/>
+            <point key="canvasLocation" x="3449" y="137"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="KGf-Gv-00T">
@@ -746,7 +749,6 @@
     </scenes>
     <resources>
         <image name="AppIcon" width="20" height="20"/>
-        <image name="arrow.up.left.and.arrow.down.right" catalog="system" width="128" height="115"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="chevron.down.2" catalog="system" width="128" height="121"/>
@@ -755,6 +757,7 @@
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="images" width="526" height="526"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
